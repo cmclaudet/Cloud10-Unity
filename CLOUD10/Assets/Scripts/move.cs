@@ -21,17 +21,34 @@ public class move : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Pickup"))
         {
-            int colSortingOrder = col.GetComponent<SpriteRenderer>().sortingOrder;
-            GameObject[] allText = GameObject.FindGameObjectsWithTag("PickupText");
-            for (int i = 0; i < allText.Length; i++)
-            {
-                if (allText[i].GetComponent<Renderer>().sortingOrder == colSortingOrder + 1)
-                {
-                    allText[i].gameObject.SetActive(false);
-                    break;
-                }
-            }
-            col.gameObject.SetActive(false);
+            setInactive(col, "PickupText");
         }
+        if (col.gameObject.CompareTag("Evil"))
+        {
+            setInactive(col, "EvilText");
+        }
+    }
+
+    void setInactive(Collider2D body, string textTag)
+    {
+        int bodySortingOrder = body.GetComponent<SpriteRenderer>().sortingOrder;
+        GameObject[] allText = GameObject.FindGameObjectsWithTag(textTag);
+        for (int i = 0; i < allText.Length; i++)
+        {
+            if (allText[i].GetComponent<Renderer>().sortingOrder == bodySortingOrder + 1)
+            {
+                if (body.gameObject.CompareTag("Pickup"))
+                {
+                    number += allText[i].GetComponent<sort>().number;
+                }
+                else if (body.gameObject.CompareTag("Evil"))
+                {
+                    number += allText[i].GetComponent<sortevil>().number;
+                }
+                allText[i].gameObject.SetActive(false);
+                break;
+            }
+        }
+        body.gameObject.SetActive(false);
     }
 }

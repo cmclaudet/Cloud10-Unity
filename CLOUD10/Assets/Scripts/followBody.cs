@@ -23,6 +23,7 @@ public class followBody : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        GetComponent<Text>().text = playerNum.ToString();
         playerScreenPos = theCamera.WorldToViewportPoint(player.transform.TransformPoint(playerPos));
         rt.anchorMax = playerScreenPos;
         rt.anchorMin = playerScreenPos;
