@@ -3,6 +3,7 @@ using System.Collections;
 
 public class manageEntities : MonoBehaviour {
     public int maxPickupNumber = 10;
+    public int maxEvilNumber = 20;
 	// Use this for initialization
 	void Start () {
 	    
@@ -16,6 +17,14 @@ public class manageEntities : MonoBehaviour {
         {
             allPickups[0].gameObject.SetActive(false);
             allPickupText[0].gameObject.SetActive(false);
+        }
+
+        GameObject[] allEvils = GameObject.FindGameObjectsWithTag("Evil");
+        GameObject[] allEvilText = GameObject.FindGameObjectsWithTag("EvilText");
+        if (allEvils.Length > maxEvilNumber)
+        {
+            allEvils[0].gameObject.SetActive(false);
+            allEvilText[0].gameObject.SetActive(false);
         }
 	}
 }

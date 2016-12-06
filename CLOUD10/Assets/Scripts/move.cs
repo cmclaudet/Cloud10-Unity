@@ -39,7 +39,9 @@ public class move : MonoBehaviour
             {
                 if (body.gameObject.CompareTag("Pickup"))
                 {
-                    number += allText[i].GetComponent<sort>().number;
+                    int pickupNumber = allText[i].GetComponent<sort>().number;
+                    checkSwitch(number, pickupNumber);
+                    number += pickupNumber;
                 }
                 else if (body.gameObject.CompareTag("Evil"))
                 {
@@ -50,5 +52,27 @@ public class move : MonoBehaviour
             }
         }
         body.gameObject.SetActive(false);
+    }
+
+    void checkSwitch(int playerNumber, int pickupNumber)
+    {
+        if (playerNumber < 10 && 10 < (playerNumber + pickupNumber))
+        {
+            changeSign("+");
+        }
+        if ((playerNumber + pickupNumber) < 10 && 10 < playerNumber)
+        {
+            changeSign("-");
+        }
+    }
+
+    void changeSign(string sign)
+    {
+        GameObject[] allEvilText = GameObject.FindGameObjectsWithTag("EvilText");
+        for (int i = 0; i < allEvilText.Length; i++)
+        {
+            allEvilText[i].GetComponent<sortevil>().number *= -1;
+            allEvilText[i].GetComponent<TextMesh>().text = sign;
+        }
     }
 }

@@ -78,10 +78,10 @@
     <Compile Include="Assets\Scripts\move.cs" />
     <Compile Include="Assets\Scripts\scrolling.cs" />
     <Compile Include="Assets\Scripts\sort.cs" />
+    <Compile Include="Assets\Scripts\sortevil.cs" />
     <Compile Include="Assets\genNumber.cs" />
     <Compile Include="Assets\newSort.cs" />
     <Compile Include="Assets\numberText.cs" />
-    <Compile Include="Assets\sortevil.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

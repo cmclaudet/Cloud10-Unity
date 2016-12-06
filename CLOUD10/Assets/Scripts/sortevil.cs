@@ -10,10 +10,18 @@ public class sortevil : MonoBehaviour {
         renderer.sortingLayerName = "Evils";
 
         number = Random.Range(-1, -5);
+        
         TextMesh text = GetComponent<TextMesh>();
         text.text = "-";
 
-        transform.Translate(0, 0.3f, 0);
+        GameObject player = GameObject.Find("player");
+        if (player.GetComponent<move>().number > 10)
+        {
+            number = -number;
+            text.text = "+";
+        }
+
+        transform.Translate(-0.1f, 0.2f, 0);
     }
 
     // Update is called once per frame
