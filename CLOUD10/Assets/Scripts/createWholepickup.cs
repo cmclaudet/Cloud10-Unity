@@ -7,18 +7,31 @@ public class createWholepickup : MonoBehaviour {
     public Rigidbody2D justEvil;
     public GameObject pickupText;
     public GameObject evilText;
+    public Rigidbody2D goldCloud;
+
+    private GameObject player;
+
     public float spawnFrequencyPickup = 2;
     public float spawnFrequencyEvil = 1;
+    public float spawnFrequencyGold = 5;
+    public int spawnGoldProb = 3;
+
+    public float respawnStormTimer = 5;
+    private float currentStormTimer;
+
     public int layerOrderPickups;
     public int layerOrderEvils;
     private float timeSinceSpawnPickup = 0;
     private float timeSinceSpawnEvil = 0;
+    private float timeSinceSpawnGold = 0;
 
     // Use this for initialization
     void Start()
     {
         layerOrderPickups = 1;
         layerOrderEvils = 1;
+        player = GameObject.Find("player");
+        currentStormTimer = respawnStormTimer;
     }
 
     // Update is called once per frame
@@ -26,6 +39,7 @@ public class createWholepickup : MonoBehaviour {
     {
         timeSinceSpawnPickup += Time.deltaTime;
         timeSinceSpawnEvil += Time.deltaTime;
+        timeSinceSpawnGold += Time.deltaTime;
 
         //spawn new pickup every 2 seconds
         if (timeSinceSpawnPickup > spawnFrequencyPickup)
@@ -46,17 +60,35 @@ public class createWholepickup : MonoBehaviour {
 
         if (timeSinceSpawnEvil > spawnFrequencyEvil)
         {
-            Rigidbody2D newEvil = Instantiate(justEvil);
-            newEvil.GetComponent<SpriteRenderer>().sortingOrder = layerOrderEvils;
+            if (player.GetComponent<move>().canSpawnStorm)
+            {
+                Rigidbody2D newEvil = Instantiate(justEvil);
+                newEvil.GetComponent<SpriteRenderer>().sortingOrder = layerOrderEvils;
 
-            GameObject newTextEvil = Instantiate(evilText);
-            Renderer evilTextRenderer = newTextEvil.GetComponent<Renderer>();
-            evilTextRenderer.sortingOrder = layerOrderEvils + 1;
+                GameObject newTextEvil = Instantiate(evilText);
+                Renderer evilTextRenderer = newTextEvil.GetComponent<Renderer>();
+                evilTextRenderer.sortingOrder = layerOrderEvils + 1;
 
-            setTextToCloud(newEvil, newTextEvil);
+                setTextToCloud(newEvil, newTextEvil);
 
-            layerOrderEvils += 2;
-            timeSinceSpawnEvil = 0;
+                layerOrderEvils += 2;
+                timeSinceSpawnEvil = 0;
+            }
+        }
+
+        if (player.GetComponent<move>().canSpawnStorm == false)
+        {
+            updateStormTimer();  
+        }
+
+        if (timeSinceSpawnGold > spawnFrequencyGold)
+        {
+            int roll = Random.Range(1, spawnGoldProb);
+            if (roll == 1)
+            {
+                Instantiate(goldCloud);
+            }
+            timeSinceSpawnGold = 0;
         }
     }
 
@@ -65,5 +97,15 @@ public class createWholepickup : MonoBehaviour {
         cloudText.transform.position = cloud.transform.position;
         cloudText.transform.Translate(0.4f, 0.4f, 0);
         cloudText.GetComponent<Rigidbody2D>().velocity = cloud.GetComponent<Rigidbody2D>().velocity;
+    }
+
+    void updateStormTimer()
+    {
+        currentStormTimer -= Time.deltaTime;
+        if (currentStormTimer < 0)
+        {
+            player.GetComponent<move>().canSpawnStorm = true;
+            currentStormTimer = respawnStormTimer;
+        }
     }
 }
