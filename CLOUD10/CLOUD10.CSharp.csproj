@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\sortevil.cs" />
     <Compile Include="Assets\endGame.cs" />
     <Compile Include="Assets\genNumber.cs" />
+    <Compile Include="Assets\loadmain.cs" />
     <Compile Include="Assets\newSort.cs" />
     <Compile Include="Assets\numberText.cs" />
   </ItemGroup>

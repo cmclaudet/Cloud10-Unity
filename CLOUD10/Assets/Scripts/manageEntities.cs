@@ -4,6 +4,7 @@ using System.Collections;
 public class manageEntities : MonoBehaviour {
     public int maxPickupNumber = 10;
     public int maxEvilNumber = 20;
+    public int maxGoldNumber = 2;
 	// Use this for initialization
 	void Start () {
 	    
@@ -11,20 +12,28 @@ public class manageEntities : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GameObject[] allPickups = GameObject.FindGameObjectsWithTag("Pickup");
-        GameObject[] allPickupText = GameObject.FindGameObjectsWithTag("PickupText");
-        if (allPickups.Length > maxPickupNumber)
-        {
-            allPickups[0].gameObject.SetActive(false);
-            allPickupText[0].gameObject.SetActive(false);
-        }
-
-        GameObject[] allEvils = GameObject.FindGameObjectsWithTag("Evil");
-        GameObject[] allEvilText = GameObject.FindGameObjectsWithTag("EvilText");
-        if (allEvils.Length > maxEvilNumber)
-        {
-            allEvils[0].gameObject.SetActive(false);
-            allEvilText[0].gameObject.SetActive(false);
-        }
+        inactivate("Pickup", "PickupText", maxPickupNumber);
+        inactivate("Evil", "EvilText", maxEvilNumber);
+        inactivateGold();
 	}
+
+    void inactivate(string bodyTag, string textTag, int maxNum)
+    {
+        GameObject[] allBodies = GameObject.FindGameObjectsWithTag(bodyTag);
+        GameObject[] allBodyText = GameObject.FindGameObjectsWithTag(textTag);
+        if (allBodies.Length > maxNum)
+        {
+            allBodies[0].gameObject.SetActive(false);
+            allBodyText[0].gameObject.SetActive(false);
+        }
+    }
+
+    void inactivateGold()
+    {
+        GameObject[] allGold = GameObject.FindGameObjectsWithTag("Gold");
+        if (allGold.Length > maxGoldNumber)
+        {
+            allGold[0].gameObject.SetActive(false);
+        }
+    }
 }
