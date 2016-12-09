@@ -30,10 +30,11 @@ public class move : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetMouseButton(0) && control)
+        if (Input.touchCount > 0 && control)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 forceDir = (mousePos - transform.position).normalized;
+            Vector2 touch = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            Vector3 fingerPos = new Vector3(touch.x, touch.y, 0.0f);
+            Vector3 forceDir = (fingerPos - transform.position).normalized;
             Vector3 force = forceDir * forceMag;
             GetComponent<Rigidbody2D>().AddForce(force);
         }
