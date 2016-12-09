@@ -12,7 +12,7 @@ public class kinematics : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         //Find radius of body
-        bodyRadius = 0;
+        bodyRadius = GetComponent<CircleCollider2D>().radius;
         Random.InitState(seed);
 
         //Get screen dimensions with respect to world co-ordinates
