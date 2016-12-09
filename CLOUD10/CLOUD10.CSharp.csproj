@@ -84,6 +84,7 @@
     <Compile Include="Assets\loadmain.cs" />
     <Compile Include="Assets\newSort.cs" />
     <Compile Include="Assets\numberText.cs" />
+    <Compile Include="Assets\playSound.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -12,6 +13,7 @@ public class endGame : MonoBehaviour {
     public GameObject tooHighText;
     public GameObject playAgainButton;
     public GameObject Canvas;
+
     private bool won = false;
     private bool lost = false;
 
@@ -80,6 +82,6 @@ public class endGame : MonoBehaviour {
 
     public void restart()
     {
-        SceneManager.LoadScene("title");
+        SceneManager.LoadScene("main");
     }
 }

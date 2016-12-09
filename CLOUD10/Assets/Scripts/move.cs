@@ -1,8 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 using System.Collections;
 
 public class move : MonoBehaviour
 {
+    public AudioSource droplet1;
+    public AudioSource droplet2;
+    public AudioSource droplet3;
+    public AudioSource droplet4;
+    public AudioSource droplet5;
+    public AudioSource clearSkies;
+    private AudioSource[] droplets;
+
     public float forceMag;
     public int number = 0;
     private bool control = true;
@@ -12,6 +21,11 @@ public class move : MonoBehaviour
     public bool lose = false;
 
     public bool canSpawnStorm = true;
+
+    void Start()
+    {
+        droplets = new AudioSource[5]{ droplet1, droplet2, droplet3, droplet4, droplet5 };
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -32,16 +46,20 @@ public class move : MonoBehaviour
     {
         if (control)
         {
+            int soundNum = Random.Range(0,4);
             if (col.gameObject.CompareTag("Pickup"))
             {
+                droplets[soundNum].Play();
                 setInactive(col, "PickupText");
             }
             if (col.gameObject.CompareTag("Evil"))
             {
+                droplets[soundNum].Play();
                 setInactive(col, "EvilText");
             }
             if (col.gameObject.CompareTag("Gold"))
             {
+                clearSkies.Play();
                 col.gameObject.SetActive(false);
                 deleteStorms();
             }
