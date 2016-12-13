@@ -70,25 +70,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ControllingCameraAspectScript.cs" />
-    <Compile Include="Assets\Scripts\createPickups.cs" />
     <Compile Include="Assets\Scripts\createWholepickup.cs" />
-    <Compile Include="Assets\Scripts\followBody.cs" />
-    <Compile Include="Assets\Scripts\getNumber.cs" />
+    <Compile Include="Assets\Scripts\endGame.cs" />
+    <Compile Include="Assets\Scripts\getMesh.cs" />
     <Compile Include="Assets\Scripts\kinematics.cs" />
+    <Compile Include="Assets\Scripts\loadmain.cs" />
     <Compile Include="Assets\Scripts\manageEntities.cs" />
     <Compile Include="Assets\Scripts\move.cs" />
     <Compile Include="Assets\Scripts\scrolling.cs" />
     <Compile Include="Assets\Scripts\setBGLayer.cs" />
     <Compile Include="Assets\Scripts\sort.cs" />
     <Compile Include="Assets\Scripts\sortevil.cs" />
-    <Compile Include="Assets\endGame.cs" />
-    <Compile Include="Assets\genNumber.cs" />
-    <Compile Include="Assets\getMesh.cs" />
-    <Compile Include="Assets\loadmain.cs" />
-    <Compile Include="Assets\newSort.cs" />
-    <Compile Include="Assets\numberText.cs" />
-    <Compile Include="Assets\playSound.cs" />
-    <Compile Include="Assets\wallPositions.cs" />
+    <Compile Include="Assets\Scripts\wallPositions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

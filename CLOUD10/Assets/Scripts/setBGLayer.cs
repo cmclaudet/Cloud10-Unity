@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class setBGLayer : MonoBehaviour {
-
-	// Use this for initialization
+    
+    //Set sorting layer of background object
 	void Awake () {
         GetComponent<MeshRenderer>().sortingLayerName = "Background";
 	}

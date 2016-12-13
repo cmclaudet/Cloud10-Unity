@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class sortevil : MonoBehaviour {
+    //generates number for storm cloud
+    //sets sorting layer for storm cloud
+    //displays sign number to ensure player does not know exact storm cloud number
     public int number;
     // Use this for initialization
     void Start()
@@ -23,10 +26,5 @@ public class sortevil : MonoBehaviour {
 
         transform.Translate(-0.1f, 0.2f, 0);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 }
