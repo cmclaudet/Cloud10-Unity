@@ -24,7 +24,7 @@ public class createWholepickup : MonoBehaviour {
     public float respawnStormTimer = 5;
     private float currentStormTimer;
 
-    //Define sorting order for Pickups and Evil clouds. 
+    //Define sorting order for Pickups and Evil clouds.
     //These clouds are on separate sorting layers so can have the same sorting order numbers without overlapping
     public int layerOrderPickups;
     public int layerOrderEvils;
@@ -73,7 +73,7 @@ public class createWholepickup : MonoBehaviour {
         //If storm clouds have disappeared start adding to respawn timer
         if (player.GetComponent<move>().canSpawnStorm == false)
         {
-            updateStormTimer();  
+            updateStormTimer();
         }
 
         //Randomize gold cloud spawn so chance of 1/spawnGoldProb of gold cloud spawning

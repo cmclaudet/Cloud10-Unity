@@ -7,7 +7,7 @@ public class move : MonoBehaviour
     /*Moves player when touch is applied
       Manages collisions with other clouds and their effects
       Triggers win/lose states when conditions are met*/
-    
+
     //Sound effects when player collides with pickups and storms
     public AudioSource droplet1;
     public AudioSource droplet2;
@@ -38,10 +38,10 @@ public class move : MonoBehaviour
     void FixedUpdate()
     {
         //If screen is touched and player can be controlled, force is applied in direction of touch
-        if (Input.touchCount > 0 && control)
+        if (Input.GetMouseButton(0) && control)
         {
             //find touch position in world co-ordinates
-            Vector2 touch = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            Vector2 touch = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 fingerPos = new Vector3(touch.x, touch.y, 0.0f);
             Vector3 forceDir = (fingerPos - transform.position).normalized;
             Vector3 force = forceDir * forceMag;
@@ -53,6 +53,7 @@ public class move : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
     }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (control)
